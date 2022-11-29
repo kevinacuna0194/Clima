@@ -20,6 +20,7 @@ function buscarClima(e) {
     }
 
     /** Consultariamos la API */
+    consultarAPI(ciudad, pais);
 }
 
 function mostrarError(mensaje) {
@@ -44,4 +45,19 @@ function mostrarError(mensaje) {
             alerta.remove();
         }, 5000);
     }
+}
+
+function consultarAPI(ciudad, pais) {
+    const appId = '39c87c40eae6de90d31b287636d30ac9';
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad},${pais}&appid=${appId}`;
+
+    console.log(url);
+    /** respuesta con el JSON.
+     * https://api.openweathermap.org/data/2.5/weather?q=Montevideo,UY&appid=39c87c40eae6de90d31b287636d30ac9 */
+
+     fetch( url )
+        .then( respuesta => respuesta.json() )
+        .then( datos => console.log(datos) );
+         /** {coord: {…}, weather: Array(1), base: 'stations', main: {…}, visibility: 10000, …} */
 }
